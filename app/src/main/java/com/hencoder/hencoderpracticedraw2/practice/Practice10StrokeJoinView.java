@@ -12,6 +12,14 @@ public class Practice10StrokeJoinView extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Path path = new Path();
 
+    {
+        paint.setStrokeWidth(40);
+        paint.setStyle(Paint.Style.STROKE);
+
+        path.rLineTo(200, 0);
+        path.rLineTo(-160, 120);
+    }
+
     public Practice10StrokeJoinView(Context context) {
         super(context);
     }
@@ -24,14 +32,6 @@ public class Practice10StrokeJoinView extends View {
         super(context, attrs, defStyleAttr);
     }
 
-    {
-        paint.setStrokeWidth(40);
-        paint.setStyle(Paint.Style.STROKE);
-
-        path.rLineTo(200, 0);
-        path.rLineTo(-160, 120);
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -42,14 +42,17 @@ public class Practice10StrokeJoinView extends View {
 
         canvas.translate(100, 100);
         // 第一种形状：MITER
+        paint.setStrokeJoin(Paint.Join.MITER);
         canvas.drawPath(path, paint);
 
         canvas.translate(300, 0);
         // 第二种形状：BEVEL
+        paint.setStrokeJoin(Paint.Join.BEVEL);
         canvas.drawPath(path, paint);
 
         canvas.translate(300, 0);
         // 第三种形状：ROUND
+        paint.setStrokeJoin(Paint.Join.ROUND);
         canvas.drawPath(path, paint);
 
         canvas.restore();

@@ -14,6 +14,14 @@ public class Practice16TextPathView extends View {
     Path textPath = new Path();
     String text = "Hello HenCoder";
 
+    {
+        paint.setTextSize(120);
+
+        // 使用 Paint.getTextPath() 来获取文字的 Path
+
+        pathPaint.setStyle(Paint.Style.STROKE);
+    }
+
     public Practice16TextPathView(Context context) {
         super(context);
     }
@@ -26,19 +34,13 @@ public class Practice16TextPathView extends View {
         super(context, attrs, defStyleAttr);
     }
 
-    {
-        paint.setTextSize(120);
-
-        // 使用 Paint.getTextPath() 来获取文字的 Path
-
-        pathPaint.setStyle(Paint.Style.STROKE);
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
         canvas.drawText(text, 50, 200, paint);
+
+        paint.getTextPath(text, 0, text.length() - 1, 50, 400, textPath);
 
         canvas.drawPath(textPath, pathPaint);
     }
